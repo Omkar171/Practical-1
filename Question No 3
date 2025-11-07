@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include <string.h>
+
+#define MAX 100   // maximum number of records
+
+// Define structure for student (can be changed to employee etc.)
+struct Student {
+    int rollno;
+    char name[50];
+    float marks;
+};
+
+int main() {
+    struct Student s[MAX];
+    int n, i, choice;
+
+    printf("Enter number of students: ");
+    scanf("%d", &n);
+
+    // --- CREATE operation ---
+    printf("\n--- Enter Student Details ---\n");
+    for (i = 0; i < n; i++) {
+        printf("\nRecord %d:\n", i + 1);
+        printf("Enter Roll No: ");
+        scanf("%d", &s[i].rollno);
+        printf("Enter Name: ");
+        scanf("%s", s[i].name);
+        printf("Enter Marks: ");
+        scanf("%f", &s[i].marks);
+    }
+
+    // --- DISPLAY operation ---
+    printf("\n--- Student Database ---\n");
+    printf("RollNo\tName\tMarks\n");
+    printf("--------------------------\n");
+    for (i = 0; i < n; i++) {
+        printf("%d\t%s\t%.2f\n", s[i].rollno, s[i].name, s[i].marks);
+    }
+
+    return 0;
+}

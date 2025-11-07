@@ -1,0 +1,42 @@
+#include <stdio.h>
+
+int linear(int a[], int n, int key) {
+    for (int i = 0; i < n; i++)
+        if (a[i] == key) return i;
+    return -1;
+}
+
+int binary(int a[], int n, int key) {
+    int l = 0, h = n - 1, m;
+    while (l <= h) {
+        m = (l + h) / 2;
+        if (a[m] == key) return m;
+        else if (a[m] < key) l = m + 1;
+        else h = m - 1;
+    }
+    return -1;
+}
+
+int binRec(int a[], int l, int h, int key) {
+    if (l > h) return -1;
+    int m = (l + h) / 2;
+    if (a[m] == key) return m;
+    if (a[m] < key) return binRec(a, m + 1, h, key);
+    return binRec(a, l, m - 1, key);
+}
+
+int main() {
+    int a[50], n, key, ch, pos;
+    printf("Enter size: "); scanf("%d", &n);
+    printf("Enter %d sorted elements:\n", n);
+    for (int i = 0; i < n; i++) scanf("%d", &a[i]);
+    printf("Enter key: "); scanf("%d", &key);
+
+    printf("\n1.Linear  2.Binary  3.Recursive Binary\nChoice: ");
+    scanf("%d", &ch);
+
+    pos = (ch==1)?linear(a,n,key):(ch==2)?binary(a,n,key):binRec(a,0,n-1,key);
+    if (pos==-1) printf("Not found\n");
+    else printf("Found at position %d\n", pos+1);
+    return 0;
+}

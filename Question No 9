@@ -1,0 +1,33 @@
+#include <stdio.h>
+#define N 5
+
+int q[N], f=-1, r=-1;
+
+int main(){
+    int c,x;
+    while(1){
+        printf("1.Enq 2.Deq 3.Dis 4.Exit: ");
+        scanf("%d",&c);
+
+        if(c==1){                  
+            if(r==N-1) printf("Ov\n");
+            else {
+                if(f==-1) f=0;
+                scanf("%d",&x);
+                q[++r]=x;
+            }
+        }
+
+        else if(c==2){                
+            if(f==-1 || f>r) printf("Un\n");
+            else f++;
+        }
+
+        else if(c==3){            
+            for(int i=f;i<=r;i++) printf("%d ",q[i]);
+            printf("\n");
+        }
+
+        else break;
+    }
+}
